@@ -53,3 +53,26 @@ window.onscroll = () => {
 
 /*===== DESAFIOS CODER =====*/
 
+for (i = 1; i <= 10; i++) {
+    console.log(i)
+}
+
+let precio = parseFloat(prompt('INGRESAR NUMERO'));
+let descuento20 = precio - (precio * 0.2);
+console.log(descuento20);
+
+
+let sneakers1 = prompt('FIRST SNEAKER');
+let sneakers2 = prompt('SECOND SNEAKER');
+let sneakers3 = prompt('THIRD SNEAKER');
+let sneakers4 = prompt('QUARTER SNEAKER');
+let sneakers5 = prompt('FIFTH SNEAKER');
+let espacio = ' ';
+
+if ((sneakers1 != '') && (sneakers2 != '') && (sneakers3 != '') && (sneakers4 != '') && (sneakers5 != '')) {
+    let carrito = sneakers1 + ' ' + sneakers2 + ' ' + sneakers3 + espacio + sneakers4 + espacio + sneakers5
+    console.log(carrito);
+} else {
+
+    console.log('ERROR NEED FIVE SNEAKERS')
+}
