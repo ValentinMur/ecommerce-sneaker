@@ -32,13 +32,13 @@ function scrollActive() {
     sections.forEach(current => {
         const sectionHeight = current.offsetHeight
         const sectionTop = current.offsetTop - 50
-        sectionId = current.getAttribute('id')
+        const sectionId = current.getAttribute('id')
 
         if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-            document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.add(active)
+            document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.add('active')
 
         } else {
-            document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.remove(active)
+            document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.remove('active')
         }
     })
 }
@@ -162,17 +162,19 @@ class Producto {
 }
 
 let nikeFreeRn = new Producto('Nike Free Rn', 100, 10)
-let adidasFlex = new Producto('Adidas Flex', 70, 10)
+let nikeSply = new Producto('Nike Sply', 70, 10)
 let nikeJordan = new Producto('Nike Jordan', 100, 10)
 
-// alert('Hola bienvenidos a ruby\n\nestos son los productos en el catalogo \n\n *Nike Free RN $100\n *Adidas Flex $70\n *Nike Jordan $100');
+console.log(nikeFreeRn)
+
+alert('Hola bienvenidos a ruby\n\nestos son los productos en el catalogo \n\n *Nike Free RN $100\n *Adidas Flex $70\n *Nike Jordan $100');
 
 
 
-function agregarCarrito(producto, stock) {
-    const tenemosStock = validarStock(stock);
+function agregarCarrito(producto, cantidad) {
+    const tenemosStock = validarStock(cantidad);
     if (tenemosStock === 'tenemos stock') {
-        console.log('Agregas producto al carrito: ' + producto + ' ' + stock);
+        console.log('Agregas producto al carrito: ' + producto.nombre + ' ' + '$' + producto.precio + ' ' + producto.stock);
     } else {
         console.log('No hay productos agregados');
     }
@@ -189,8 +191,15 @@ function validarStock(stockdelProducto) {
     }
 }
 
-function precioFinal() { }
+function finalizarCompra() {
+    let precioA = nikeFreeRn.precio;
+    let precioB = nikeSply.precio;
+    let resultadoFinal = precioA + precioB;
+    console.log('El precio final es' + ' ' + '$' + resultadoFinal)
+
+}
 
 
-agregarCarrito('Nike Jordan', 1)
-agregarCarrito('Nike Air', 5)
+agregarCarrito(nikeFreeRn, 1)
+agregarCarrito(nikeSply, 1)
+finalizarCompra()
