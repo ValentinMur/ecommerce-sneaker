@@ -108,7 +108,7 @@ stockProductos.forEach((producto) => {
 const agregarAlCarrito = (idProducto) => {
     const item = stockProductos.find((producto) => producto.id === idProducto)
     carrito.push(item)
-    console.log(carrito)
+
 }
 
 function carritoCompra() {
