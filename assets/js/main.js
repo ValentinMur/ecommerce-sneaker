@@ -45,113 +45,18 @@ function scrollActive() {
 
 /*===== CHANGE COLOR HEADER =====*/
 
-window.onscroll = () => {
-    const nav = document.getElementById('header')
-    if (this.scrollY >= 200) nav.classList.add('scroll-header'); else nav.classList.remove('scroll-header')
-}
+// window.onscroll = () => {
+//     const nav = document.getElementById('header')
+//     if (this.scrollY >= 200) nav.classList.add('scroll-header'); else nav.classList.remove('scroll-header')
+// }
 
 
 ///////////*===== DESAFIO COMPLEMENTARIO CODER =====*////////////////
-
-// for (let i = 1; i <= 10; i++) {
-//     console.log(i)
-// }
-
-// let precio = parseFloat(prompt('INGRESAR NUMERO'));
-// let descuento20 = precio - (precio * 0.2);
-// console.log(descuento20);
-
-
-// const sneakers1 = prompt('FIRST SNEAKER');
-// const sneakers2 = prompt('SECOND SNEAKER');
-// const sneakers3 = prompt('THIRD SNEAKER');
-// const sneakers4 = prompt('QUARTER SNEAKER');
-// const sneakers5 = prompt('FIFTH SNEAKER');
-// const espacio = ' ';
-
-// if ((sneakers1 != '') && (sneakers2 != '') && (sneakers3 != '') && (sneakers4 != '') && (sneakers5 != '')) {
-//     let carrito = sneakers1 + ' ' + sneakers2 + ' ' + sneakers3 + espacio + sneakers4 + espacio + sneakers5
-//     console.log(carrito);
-// } else {
-
-//     console.log('ERROR NEED FIVE SNEAKERS')
-// }
-
-// function Perro(nombre, edad, vivo) {
-//     this.nombre = nombre;
-//     this.edad = edad;
-//     this.vivo = vivo;
-// };
-
-// const labrador = new Perro('inca', 20, false);
-// console.log(labrador);
-
-// const caniche = new Perro('tobi', 7, true);
-// console.log(caniche);
-
-// function Human(name, country, age) {
-//     this.name = name;
-//     this.country = country;
-//     this.age = age;
-// };
-
-// const asian = new Human('VinoToro', 'Argentinian', 23);
-// console.log(asian);
-
-
-// class Celular {
-//     constructor(color, peso, rdp, rdc, ram) {
-//         this.color = color;
-//         this.peso = peso;
-//         this.resolucionDePantalla = rdp;
-//         this.resolucionDeCamara = rdc;
-//         this.memoriaRam = ram;
-//         this.encendido = false;
-//     }
-//     botonEncendido() {
-//         if (this.encendido == false) {
-//             alert('celular prendido')
-//             this.encendido = true;
-//         } else {
-//             alert('celular apagado');
-//         }
-//     }
-
-//     reiniciar() {
-//         if (this.encendido == true) {
-//             alert('reiniciando celular');
-//         } else {
-//             alert('el celular esta apagado')
-//         }
-//     }
-
-//     tomarFoto() {
-//         alert(`foto tomada en una resolucion de: ${this.resolucionDeCamara}`)
-//     }
-
-//     grabarVideo() {
-//         alert(`grabar video en: ${this.resolucionDeCamara}`)
-//     }
-// }
-
-
-// celular1 = new Celular('rojo', '150g', '5', 'full hd', '2GB');
-
 
 
 
 ////////////////////////*===== DESAFIO ENTREGABLE CODER =====*////////////////////
 
-
-
-
-// const arrayProductos = ['Nike Free RN, ' + 'Adidas Flex, ' + 'Nike Jordan']
-
-
-
-// for (let i = 0; i < arrayProductos.length; i++) {
-//     console.log(arrayProductos[i])
-// }
 
 class Producto {
     constructor(nombre, precio, stock) {
@@ -161,45 +66,51 @@ class Producto {
     };
 }
 
-let nikeFreeRn = new Producto('Nike Free Rn', 100, 10)
-let nikeSply = new Producto('Nike Sply', 70, 10)
-let nikeJordan = new Producto('Nike Jordan', 100, 10)
-
-console.log(nikeFreeRn)
-
-alert('Hola bienvenidos a ruby\n\nestos son los productos en el catalogo \n\n *Nike Free RN $100\n *Adidas Flex $70\n *Nike Jordan $100');
+let carrito = []
 
 
+let stockProductos = [
+    {
+        id: 1,
+        nombre: 'nike jordan',
+        precio: 180,
+        stock: 1000,
+        imagen: "assets/img/featured1.png",
+    },
+    {
+        id: 2,
+        nombre: 'nike sply',
+        precio: 70,
+        stock: 1000,
+        imagen: "assets/img/new2.png",
+    },
 
-function agregarCarrito(producto, cantidad) {
-    const tenemosStock = validarStock(cantidad);
-    if (tenemosStock === 'tenemos stock') {
-        console.log('Agregas producto al carrito: ' + producto.nombre + ' ' + '$' + producto.precio + ' ' + producto.stock);
-    } else {
-        console.log('No hay productos agregados');
-    }
+]
 
 
+
+const contenedorProductos = document.getElementById('contenedor-productos')
+
+stockProductos.forEach((producto) => {
+    const article = document.createElement('article');
+    article.classList.add('sneaker');
+    article.innerHTML = `
+    <img class="sneaker__img" src=${producto.imagen} alt=''>
+    <span class="sneaker__name">${producto.nombre}</span>
+    <span class="sneaker__preci">Precio:$ ${producto.precio}</span>
+    <button href="" onclick="agregarAlCarrito(${producto.id})" class="button-light">Add to Cart <i class='bx bx-right-arrow-alt button-icon'></i></button>
+    `
+
+    contenedorProductos.appendChild(article)
+})
+
+
+const agregarAlCarrito = (idProducto) => {
+    const item = stockProductos.find((producto) => producto.id === idProducto)
+    carrito.push(item)
+    console.log(carrito)
 }
 
-
-function validarStock(stockdelProducto) {
-    if (stockdelProducto > 0) {
-        return 'tenemos stock'
-    } else {
-        return 'no hay stock'
-    }
+function carritoCompra() {
+    console.log(carrito);
 }
-
-function finalizarCompra() {
-    let precioA = nikeFreeRn.precio;
-    let precioB = nikeSply.precio;
-    let resultadoFinal = precioA + precioB;
-    console.log('El precio final es' + ' ' + '$' + resultadoFinal)
-
-}
-
-
-agregarCarrito(nikeFreeRn, 1)
-agregarCarrito(nikeSply, 1)
-finalizarCompra()
