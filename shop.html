@@ -23,7 +23,7 @@
                 <i class='bx bxs-grid'></i>
             </div>
 
-            <a href="#" class="nav__logo">N1ke</a>
+            <a href="#" class="nav__logo">Ruby</a>
 
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
@@ -36,7 +36,8 @@
             </div>
 
             <div class="nav__shop">
-                <button onclick="carritoCompra()"><i class='bx bx-shopping-bag'></i></button>
+                <button onclick="carritoCompra()"><i class='bx bx-shopping-bag'><span
+                            id="contador-carrito">0</span></i></button>
             </div>
         </nav>
     </header>
@@ -44,97 +45,22 @@
     <main class="l-main">
         <section class="featured section" id="shop">
             <h2 class="section-title">All Products</h2>
+
+
+
             <div class="featured__container bd-grid" id="contenedor-productos">
-                <!-- <article class="sneaker">
-                    <img src="assets/img/featured1.png" alt="" class="sneaker__img">
-                    <span class="sneaker__name">Nike Jordan</span>
-                    <span class="sneaker__preci">$149.99</span>
-                    <button href="" onclick="agregarAlCarrito()" class="button-light">Add to Cart <i
-                            class='bx bx-right-arrow-alt button-icon'></i></button>
-                </article>
 
-                <article class="sneaker">
-                    <img src="assets/img/featured2.png" alt="" class="sneaker__img">
-                    <span class="sneaker__name">Nike Free RN</span>
-                    <span class="sneaker__preci">$149.99</span>
-                    <button href="" class="button-light">Add to Cart <i
-                            class='bx bx-right-arrow-alt button-icon'></i></button>
-                </article>
+            </div>
 
-                <article class="sneaker">
-                    <img src="assets/img/featured3.png" alt="" class="sneaker__img">
-                    <span class="sneaker__name">Nike Free RN</span>
-                    <span class="sneaker__preci">$149.99</span>
-                    <button href="" class="button-light">Add to Cart <i
-                            class='bx bx-right-arrow-alt button-icon'></i></button>
-                </article>
+            <div class="modal-contenedor">
+                <div class="modal-carrito">
+                    <h3>Cart</h3>
+                    <button id="btn-cerrar-carrito"><i class='bx bx-message-alt-x'></i></button>
+                    <div id="carrito-contenedor">
 
-                <article class="sneaker">
-                    <img src="assets/img/new2.png" alt="" class="sneaker__img">
-                    <span class="sneaker__name">Nike Sply</span>
-                    <span class="sneaker__preci">$79.99</span>
-                    <button href="" class="button-light">Add to Cart <i
-                            class='bx bx-right-arrow-alt button-icon'></i></button>
-                </article>
-
-                <article class="sneaker">
-                    <img src="assets/img/new3.png" alt="" class="sneaker__img">
-                    <span class="sneaker__name">Nike Sply</span>
-                    <span class="sneaker__preci">$79.99</span>
-                    <button href="" class="button-light">Add to Cart <i
-                            class='bx bx-right-arrow-alt button-icon'></i></button>
-                </article>
-
-                <article class="sneaker">
-                    <img src="assets/img/new4.png" alt="" class="sneaker__img">
-                    <span class="sneaker__name">Nike Sply</span>
-                    <span class="sneaker__preci">$79.99</span>
-                    <button href="" class="button-light">Add to Cart <i
-                            class='bx bx-right-arrow-alt button-icon'></i></button>
-                </article>
-
-                <article class="sneaker">
-                    <img src="assets/img/new5.png" alt="" class="sneaker__img">
-                    <span class="sneaker__name">Nike Sply</span>
-                    <span class="sneaker__preci">$79.99</span>
-                    <button href="" class="button-light">Add to Cart <i
-                            class='bx bx-right-arrow-alt button-icon'></i></button>
-                </article>
-
-                <article class="sneaker">
-                    <img src="assets/img/women1.png" alt="" class="sneaker__img">
-                    <span class="sneaker__name">Nike Womens</span>
-                    <span class="sneaker__preci">$129.99</span>
-                    <button href="" class="button-light">Add to Cart <i
-                            class='bx bx-right-arrow-alt button-icon'></i></button>
-                </article>
-
-
-                <article class="sneaker">
-                    <img src="assets/img/women2.png" alt="" class="sneaker__img">
-                    <span class="sneaker__name">Nike Womens</span>
-                    <span class="sneaker__preci">$129.99</span>
-                    <button href="" class="button-light">Add to Cart <i
-                            class='bx bx-right-arrow-alt button-icon'></i></button>
-                </article>
-
-
-                <article class="sneaker">
-                    <img src="assets/img/women3.png" alt="" class="sneaker__img">
-                    <span class="sneaker__name">Nike Womens</span>
-                    <span class="sneaker__preci">$129.99</span>
-                    <button href="" class="button-light">Add to Cart <i
-                            class='bx bx-right-arrow-alt button-icon'></i></button>
-                </article>
-
-
-                <article class="sneaker">
-                    <img src="assets/img/women4.png" alt="" class="sneaker__img">
-                    <span class="sneaker__name">Nike Womens</span>
-                    <span class="sneaker__preci">$129.99</span>
-                    <button href="" class="button-light">Add to Cart <i
-                            class='bx bx-right-arrow-alt button-icon'></i></button>
-                </article> -->
+                    </div>
+                    <p class="precioProducto">Total: $<span id="precioTotal"></span></p>
+                </div>
             </div>
 
             <div class="sneaker__pages bd-grid">
@@ -185,11 +111,12 @@
                 <a href="#" class="footer__social"><i class='bx bxl-google'></i></a>
             </div>
         </div>
-        <p class="footer__copy">&#169; 2022 Valfa. All right reserved</p>
+        <p class="footer__copy">&#169; 2022 TechWrdl. All right reserved</p>
     </footer>
 
     <!--===== MAIN JS =====-->
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/stock.js" type="module"></script>
+    <script src="assets/js/main.js" type="module"></script>
 
 </body>
 

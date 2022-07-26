@@ -100,6 +100,18 @@ img {
   display: block;
 }
 
+/*===== MODAL CARRITO ===== */
+
+.carrito-container {
+  background-color: #8A8A8A;
+
+}
+
+
+
+
+
+
 /*===== CLASS CSS ===== */
 .section {
   padding: 5rem 0 2rem;
