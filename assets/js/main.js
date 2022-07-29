@@ -1,5 +1,3 @@
-//import { stockProductos } from "./stock.js"
-
 /*===== MENU SHOW =====*/
 
 
@@ -68,6 +66,7 @@ import { stockProductos } from "./stock.js";
 let carrito = []
 
 const contenedorProductos = document.getElementById('contenedor-productos')
+const contenedorCarrito = document.getElementById("carrito-contenedor")
 
 stockProductos.forEach((producto) => {
     const article = document.createElement('article');
@@ -76,21 +75,56 @@ stockProductos.forEach((producto) => {
     <img class="sneaker__img" src=${producto.imagen} alt=''>
     <span class="sneaker__name">${producto.nombre}</span>
     <span class="sneaker__preci">Precio:$ ${producto.precio}</span>
-    <button href="" onclick="agregarAlCarrito(${producto.id})" class="button-light">Add to Cart <i class='bx bx-right-arrow-alt button-icon'></i></button>
+    <button href="" id="${producto.id}" class="button-light">Add to Cart <i class='bx bx-right-arrow-alt button-icon'></i></button>
     `
 
     contenedorProductos.appendChild(article)
+
+    const boton = document.getElementById(`${producto.id}`)
+
+    boton.addEventListener("click", () => {
+        agregarAlCarrito(producto.id);
+
+    })
 })
 
 
 const agregarAlCarrito = (idProducto) => {
     const item = stockProductos.find((producto) => producto.id === idProducto)
     carrito.push(item)
+    actualizarCarrito()
+    console.log(carrito)
 
 }
 
-function carritoCompra() {
-    console.log(carrito);
+const eliminarDelCarrito = (idProducto) => {
+    const item = carrito.find((producto) => producto.id === idProducto)
+    const indice = carrito.indexOf(item)
+    carrito.splice(indice, 1)
+    actualizarCarrito()
+}
+
+const actualizarCarrito = () => {
+    contenedorCarrito.innerHTML = ''
+
+    carrito.forEach((producto) => {
+        const div = document.createElement('div')
+        div.className = ('productoEnCarrito')
+        div.innerHTML = `
+        <p>${producto.nombre}</p>
+        <p>Precio: ${producto.precio}</p>
+        <p>Cantidad: <span id='cantidad'>${producto.cantidad}<p>
+        <button id='botonEliminar' class='boton-eliminar'><i class='bx bx-trash'></i></button>
+        `
+        contenedorCarrito.appendChild(div)
+
+        let boton = document.getElementById('botonEliminar');
+        boton.addEventListener('click', () => {
+            eliminarDelCarrito()
+        })
+    })
 
 }
+
+
 

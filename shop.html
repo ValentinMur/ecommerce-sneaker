@@ -36,7 +36,7 @@
             </div>
 
             <div class="nav__shop">
-                <button onclick="carritoCompra()"><i class='bx bx-shopping-bag'><span
+                <button id="boton-carrito"><i class='bx bx-shopping-bag'><span
                             id="contador-carrito">0</span></i></button>
             </div>
         </nav>
@@ -52,14 +52,17 @@
 
             </div>
 
+
+
             <div class="modal-contenedor">
                 <div class="modal-carrito">
                     <h3>Cart</h3>
-                    <button id="btn-cerrar-carrito"><i class='bx bx-message-alt-x'></i></button>
+                    <button id="carritoCerrar"><i class='bx bxs-message-alt-x'></i></button>
                     <div id="carrito-contenedor">
 
                     </div>
-                    <p class="precioProducto">Total: $<span id="precioTotal"></span></p>
+                    <p class="precioProducto">Total price: $<span id="precioTotal">0</span></p>
+                    <button id="vaciar-carrito" class="boton-agregar">Delete all</button>
                 </div>
             </div>
 
@@ -117,6 +120,7 @@
     <!--===== MAIN JS =====-->
     <script src="assets/js/stock.js" type="module"></script>
     <script src="assets/js/main.js" type="module"></script>
+    <script src="assets/js/modal.js" type="module"></script>
 
 </body>
 
