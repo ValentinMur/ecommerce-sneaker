@@ -27,4 +27,3 @@ let stockProductos = [
 ]
 
 
-export { stockProductos }

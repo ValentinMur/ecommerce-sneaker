@@ -61,12 +61,30 @@ function scrollActive() {
 ////////////////////////*===== DESAFIO ENTREGABLE CODER =====*////////////////////
 
 
-import { stockProductos } from "./stock.js";
+
 
 let carrito = []
 
 const contenedorProductos = document.getElementById('contenedor-productos')
 const contenedorCarrito = document.getElementById("carrito-contenedor")
+const botonVaciar = document.getElementById('vaciar-carrito')
+const contadorCarrito = document.getElementById('contador-carrito')
+const precioTotal = document.getElementById('precioTotal')
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('carrito')) {
+        carrito = JSON.parse(localStorage.getItem('carrito'))
+        actualizarCarrito()
+    }
+})
+
+
+botonVaciar.addEventListener('click', () => {
+    carrito.length = 0
+    actualizarCarrito()
+})
+
+
 
 stockProductos.forEach((producto) => {
     const article = document.createElement('article');
@@ -90,11 +108,22 @@ stockProductos.forEach((producto) => {
 
 
 const agregarAlCarrito = (idProducto) => {
-    const item = stockProductos.find((producto) => producto.id === idProducto)
-    carrito.push(item)
-    actualizarCarrito()
-    console.log(carrito)
+    const existe = carrito.some(producto => producto.id === idProducto)
 
+    if (existe) {
+        const producto = carrito.map(producto => {
+            if (producto.id === idProducto) {
+                producto.cantidad++
+            }
+        })
+    } else {
+        const item = stockProductos.find((producto) => producto.id === idProducto)
+        carrito.push(item)
+        actualizarCarrito()
+        console.log(carrito)
+    }
+
+    actualizarCarrito()
 }
 
 const eliminarDelCarrito = (idProducto) => {
@@ -102,9 +131,13 @@ const eliminarDelCarrito = (idProducto) => {
     const indice = carrito.indexOf(item)
     carrito.splice(indice, 1)
     actualizarCarrito()
+
+
 }
 
+
 const actualizarCarrito = () => {
+
     contenedorCarrito.innerHTML = ''
 
     carrito.forEach((producto) => {
@@ -114,17 +147,14 @@ const actualizarCarrito = () => {
         <p>${producto.nombre}</p>
         <p>Precio: ${producto.precio}</p>
         <p>Cantidad: <span id='cantidad'>${producto.cantidad}<p>
-        <button id='botonEliminar' class='boton-eliminar'><i class='bx bx-trash'></i></button>
+        <button onclick="eliminarDelCarrito(${producto.id})" class='boton-eliminar'><i class='bx bx-trash'></i></button>
         `
         contenedorCarrito.appendChild(div)
+        localStorage.setItem('carrito', JSON.stringify(carrito))
 
-        let boton = document.getElementById('botonEliminar');
-        boton.addEventListener('click', () => {
-            eliminarDelCarrito()
-        })
     })
 
+    contadorCarrito.innerText = carrito.length
+    precioTotal.innerText = carrito.reduce((acc, producto) => acc + producto.precio, 0)
 }
-
-
 
