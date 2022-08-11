@@ -72,11 +72,12 @@ const contadorCarrito = document.getElementById('contador-carrito')
 const precioTotal = document.getElementById('precioTotal')
 
 document.addEventListener('DOMContentLoaded', () => {
-    if (localStorage.getItem('carrito')) {
-        carrito = JSON.parse(localStorage.getItem('carrito'))
-        actualizarCarrito()
-    }
-})
+    //if (localStorage.getItem('carrito')) {
+    //carrito = JSON.parse(localStorage.getItem('carrito'))
+    localStorage.getItem('carrito') && JSON.parse(localStorage.getItem('carrito'))
+    actualizarCarrito()
+}
+)
 
 
 botonVaciar.addEventListener('click', () => {
