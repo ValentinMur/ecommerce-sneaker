@@ -81,6 +81,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 botonVaciar.addEventListener('click', () => {
     carrito.length = 0
+    swal({
+        title: "Delete all",
+        text: "D:",
+        icon: "error",
+    })
     actualizarCarrito()
 })
 
@@ -103,7 +108,9 @@ stockProductos.forEach((producto) => {
     boton.addEventListener("click", () => {
         agregarAlCarrito(producto.id);
 
+
     })
+
 })
 
 
@@ -119,17 +126,22 @@ const agregarAlCarrito = (idProducto) => {
     } else {
         const item = stockProductos.find((producto) => producto.id === idProducto)
         carrito.push(item)
-        actualizarCarrito()
         console.log(carrito)
     }
+
+    swal({
+        title: "Add to cart",
+        text: ":D",
+        icon: "success",
+    });
 
     actualizarCarrito()
 }
 
 const eliminarDelCarrito = (idProducto) => {
-    const item = carrito.find((producto) => producto.id === idProducto)
-    const indice = carrito.indexOf(item)
-    carrito.splice(indice, 1)
+    const item = carrito.findIndex((producto) => producto.id === idProducto)
+    carrito.splice(item, 1)
+
     actualizarCarrito()
 
 
@@ -150,11 +162,11 @@ const actualizarCarrito = () => {
         <button onclick="eliminarDelCarrito(${producto.id})" class='boton-eliminar'><i class='bx bx-trash'></i></button>
         `
         contenedorCarrito.appendChild(div)
-        localStorage.setItem('carrito', JSON.stringify(carrito))
+
 
     })
-
+    localStorage.setItem('carrito', JSON.stringify(carrito))
     contadorCarrito.innerText = carrito.length
-    precioTotal.innerText = carrito.reduce((acc, producto) => acc + producto.precio, 0)
+    precioTotal.innerText = carrito.reduce((acc, producto) => acc * producto.precio, 0)
 }
 
