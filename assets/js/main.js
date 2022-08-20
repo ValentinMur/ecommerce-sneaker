@@ -63,7 +63,7 @@ function scrollActive() {
 
 
 
-let carrito = []
+let carrito = JSON.parse(localStorage.getItem('carrotp')) ?? []
 
 const contenedorProductos = document.getElementById('contenedor-productos')
 const contenedorCarrito = document.getElementById("carrito-contenedor")
@@ -72,12 +72,13 @@ const contadorCarrito = document.getElementById('contador-carrito')
 const precioTotal = document.getElementById('precioTotal')
 
 document.addEventListener('DOMContentLoaded', () => {
-    //if (localStorage.getItem('carrito')) {
-    //carrito = JSON.parse(localStorage.getItem('carrito'))
-    localStorage.getItem('carrito') && JSON.parse(localStorage.getItem('carrito'))
-    actualizarCarrito()
-}
-)
+    if (localStorage.getItem('carrito')) {
+        carrito = JSON.parse(localStorage.getItem('carrito'))
+        actualizarCarrito()
+    }
+})
+
+
 
 
 botonVaciar.addEventListener('click', () => {
@@ -98,7 +99,7 @@ stockProductos.forEach((producto) => {
     article.innerHTML = `
     <img class="sneaker__img" src=${producto.imagen} alt=''>
     <span class="sneaker__name">${producto.nombre}</span>
-    <span class="sneaker__preci">Precio:$ ${producto.precio}</span>
+    <span class="sneaker__preci">Price:$ ${producto.precio}</span>
     <button href="" id="${producto.id}" class="button-light">Add to Cart <i class='bx bx-right-arrow-alt button-icon'></i></button>
     `
 
@@ -158,8 +159,8 @@ const actualizarCarrito = () => {
         div.className = ('productoEnCarrito')
         div.innerHTML = `
         <p>${producto.nombre}</p>
-        <p>Precio: ${producto.precio}</p>
-        <p>Cantidad: <span id='cantidad'>${producto.cantidad}<p>
+        <p>Price: ${producto.precio}</p>
+        <p>Amount: <span id='cantidad'>${producto.cantidad}<p>
         <button onclick="eliminarDelCarrito(${producto.id})" class='boton-eliminar'><i class='bx bx-trash'></i></button>
         `
         contenedorCarrito.appendChild(div)
@@ -168,6 +169,6 @@ const actualizarCarrito = () => {
     })
     localStorage.setItem('carrito', JSON.stringify(carrito))
     contadorCarrito.innerText = carrito.length
-    precioTotal.innerText = carrito.reduce((acc, producto) => acc * producto.precio, 0)
+    precioTotal.innerText = carrito.reduce((acc, producto) => acc + producto.precio * producto.cantidad, 0)
 }
 
