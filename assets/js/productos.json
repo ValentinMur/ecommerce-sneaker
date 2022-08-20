@@ -1,0 +1,79 @@
+[
+    {
+        "id": 1,
+        "nombre": "Nike Jordan",
+        "precio": 150,
+        "imagen": "assets/img/featured1.png",
+        "cantidad": 1
+    },
+    {
+        "id": 2,
+        "nombre": "Nike Free RN",
+        "precio": 150,
+        "imagen": "assets/img/featured2.png",
+        "cantidad": 1
+    },
+    {
+        "id": 3,
+        "nombre": "Nike Free RN",
+        "precio": 150,
+        "imagen": "assets/img/new3.png",
+        "cantidad": 1
+    },
+    {
+        "id": 4,
+        "nombre": "Nike Sply",
+        "precio": 150,
+        "imagen": "assets/img/new2.png",
+        "cantidad": 1
+    },
+    {
+        "id": 5,
+        "nombre": "Nike Sply",
+        "precio": 80,
+        "imagen": "assets/img/featured1.png",
+        "cantidad": 1
+    },
+    {
+        "id": 6,
+        "nombre": "Nike Sply",
+        "precio": 80,
+        "imagen": "assets/img/new4.png",
+        "cantidad": 1
+    },
+    {
+        "id": 7,
+        "nombre": "Nike Sply",
+        "precio": 80,
+        "imagen": "assets/img/new5.png",
+        "cantidad": 1
+    },
+    {
+        "id": 8,
+        "nombre": "Nike Sply",
+        "precio": 130,
+        "imagen": "assets/img/women1.png",
+        "cantidad": 1
+    },
+    {
+        "id": 9,
+        "nombre": "Nike Sply",
+        "precio": 130,
+        "imagen": "assets/img/women2.png",
+        "cantidad": 1
+    },
+    {
+        "id": 10,
+        "nombre": "Nike Sply",
+        "precio": 130,
+        "imagen": "assets/img/women3.png",
+        "cantidad": 1
+    },
+    {
+        "id": 11,
+        "nombre": "Nike Sply",
+        "precio": 130,
+        "imagen": "assets/img/women4.png",
+        "cantidad": 1
+    }
+]

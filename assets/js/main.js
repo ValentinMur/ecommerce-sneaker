@@ -91,29 +91,36 @@ botonVaciar.addEventListener('click', () => {
     actualizarCarrito()
 })
 
-
-
-stockProductos.forEach((producto) => {
-    const article = document.createElement('article');
-    article.classList.add('sneaker');
-    article.innerHTML = `
+const buscarUnProductoEnMeli = () => {
+    fetch('assets/js/productos.json')
+        .then((response) => response.json())
+        .then(stockProductos => {
+            stockProductos.forEach((producto) => {
+                const article = document.createElement('article');
+                article.classList.add('sneaker');
+                article.innerHTML = `
     <img class="sneaker__img" src=${producto.imagen} alt=''>
     <span class="sneaker__name">${producto.nombre}</span>
     <span class="sneaker__preci">Price:$ ${producto.precio}</span>
     <button href="" id="${producto.id}" class="button-light">Add to Cart <i class='bx bx-right-arrow-alt button-icon'></i></button>
     `
 
-    contenedorProductos.appendChild(article)
+                contenedorProductos.appendChild(article)
 
-    const boton = document.getElementById(`${producto.id}`)
+                const boton = document.getElementById(`${producto.id}`)
 
-    boton.addEventListener("click", () => {
-        agregarAlCarrito(producto.id);
+                boton.addEventListener("click", () => {
+                    agregarAlCarrito(producto.id);
 
 
-    })
+                })
+            })
 
-})
+
+        })
+}
+
+buscarUnProductoEnMeli()
 
 
 const agregarAlCarrito = (idProducto) => {
