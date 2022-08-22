@@ -138,13 +138,24 @@ img {
   font-weight: 700;
 }
 
-.boton-agregar {
-  background-color: #8A8A8A;
+.boton-comprar {
+  background-color: #2fa704;
   color: #141414;
   font-size: 18px;
   font-weight: 700;
   padding: 5px;
   border: none;
+  margin-left: 10em;
+}
+
+.boton-agregar {
+  background-color: #f33737;
+  color: #141414;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 5px;
+  border: none;
+  margin-left: 5em;
 }
 
 .boton-agregar:hover {

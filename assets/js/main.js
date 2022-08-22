@@ -63,11 +63,12 @@ function scrollActive() {
 
 
 
-let carrito = JSON.parse(localStorage.getItem('carrotp')) ?? []
+let carrito = JSON.parse(localStorage.getItem('carrito')) ?? []
 
 const contenedorProductos = document.getElementById('contenedor-productos')
 const contenedorCarrito = document.getElementById("carrito-contenedor")
 const botonVaciar = document.getElementById('vaciar-carrito')
+const botonComprar = document.getElementById('comprar-carrito')
 const contadorCarrito = document.getElementById('contador-carrito')
 const precioTotal = document.getElementById('precioTotal')
 
@@ -79,14 +80,36 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 
+botonComprar.addEventListener('click', () => {
 
+    swal({
+        title: "Checkout",
+        text: "press cancel to continue shopping or confirm to make the purchase",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+        .then((willDelete) => {
+            if (willDelete) {
+                swal("thank you for choosing us!", {
+                    icon: "success",
+
+                });
+                carrito.length = 0
+            } else {
+                swal("keep buying!");
+
+            }
+            actualizarCarrito()
+        });
+})
 
 botonVaciar.addEventListener('click', () => {
     carrito.length = 0
     swal({
         title: "Delete all",
         text: "D:",
-        icon: "error",
+        icon: "success",
     })
     actualizarCarrito()
 })
@@ -169,6 +192,7 @@ const actualizarCarrito = () => {
         <p>Price: ${producto.precio}</p>
         <p>Amount: <span id='cantidad'>${producto.cantidad}<p>
         <button onclick="eliminarDelCarrito(${producto.id})" class='boton-eliminar'><i class='bx bx-trash'></i></button>
+        <button class='boton-eliminar'></button>
         `
         contenedorCarrito.appendChild(div)
 
